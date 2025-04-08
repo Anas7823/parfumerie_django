@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Parfums</title>
+    <link rel="stylesheet" href="{% static 'css/store_list.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Nos Parfums</h1>
+    <div class="card-container">
+        {% for product in products %}
+        <div class="card">
+            <img src="{{ product.image }}" alt="{{ product.name }}">
+            <h2>{{ product.name }}</h2>
+            <p class="price">{{ product.price }} €</p>
+            <p class="description">{{ product.description|truncatechars:100 }}</p>
+            <a href="{% url 'view_product' %}?id={{ product.id }}" class="btn">Voir le produit</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
